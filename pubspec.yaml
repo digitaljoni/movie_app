@@ -1,0 +1,38 @@
+name: movie_app
+description: Sample Movie App Made In Flutter
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.17.0 <3.0.0"
+
+dependencies:
+  bloc: ^8.0.3
+  equatable: ^2.0.3
+  flow_builder: ^0.0.9
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.0.1
+  flutter_localizations:
+    sdk: flutter
+  flutter_svg: ^1.1.1+1
+  intl: ^0.17.0
+  movies_api:
+    path: packages/movies_api
+  movies_repository:
+    path: packages/movies_repository
+
+dev_dependencies:
+  bloc_test: ^9.0.3
+  flutter_test:
+    sdk: flutter
+  mocktail: ^0.3.0
+  very_good_analysis: ^3.0.1
+
+flutter:
+  uses-material-design: true
+  generate: true
+  assets:
+    - assets/logo.svg
+    - assets/star.svg
+    - assets/arrow_left.svg
