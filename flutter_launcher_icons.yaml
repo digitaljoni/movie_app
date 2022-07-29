@@ -1,0 +1,6 @@
+flutter_icons:
+  image_path: "assets/launcher-logo.png"
+  android: true 
+  ios: true
+  adaptive_icon_background: "assets/launcher-logo-bg.png" # only available for Android 8.0 devices and above
+  adaptive_icon_foreground: "assets/launcher-logo-fg.png" # only available for Android 8.0 devices and above
