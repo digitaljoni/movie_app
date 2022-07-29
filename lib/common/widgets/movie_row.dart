@@ -16,6 +16,7 @@ class PopularMovieRow extends StatelessWidget {
           Navigator.of(context).push(MovieDetailsPage.route(movie: movie)),
       child: Container(
         margin: const EdgeInsets.all(10),
+        color: Colors.transparent,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

@@ -87,9 +87,11 @@ android {
             signingConfig signingConfigs.release
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt')
+            manifestPlaceholders = [appName: "Movie App"]
         }
         debug {
             signingConfig signingConfigs.debug
+            manifestPlaceholders = [appName: "Movie App (Debug)"]
         }
     }
 }

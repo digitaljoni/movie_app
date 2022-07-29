@@ -15,11 +15,25 @@ class MovieDetailsPage extends StatelessWidget {
 
   /// The static route for MovieDetailsPage
   static Route<dynamic> route({required Movie movie}) {
-    return MaterialPageRoute<dynamic>(
-      builder: (_) => RepositoryProvider<Movie>.value(
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) =>
+          RepositoryProvider<Movie>.value(
         value: movie,
         child: const MovieDetailsPage(),
       ),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(0, 1);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+
+        final tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
     );
   }
 
@@ -27,11 +41,18 @@ class MovieDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: SvgPicture.asset(
-            'assets/arrow_left.svg',
+        leading: Container(
+          margin: const EdgeInsets.all(10),
+          decoration: const BoxDecoration(
+            color: Colors.black38,
+            shape: BoxShape.circle,
           ),
-          onPressed: () => Navigator.of(context).pop(),
+          child: IconButton(
+            icon: SvgPicture.asset(
+              'assets/arrow_left.svg',
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
         ),
         bottomOpacity: 0,
         backgroundColor: Colors.transparent,
