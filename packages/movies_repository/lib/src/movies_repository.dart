@@ -20,12 +20,14 @@ class MoviesRepository {
   final LocalCache localCache;
 
   /// retrieve cached popular movies
-  Movies getCachedPopularMovies(int page) =>
-      Movies.fromString(localCache.read('$_moviesKeyPrefix$page') as String);
+  Movies getCachedPopularMovies(int page) => Movies.fromString(
+        localCache.read('$_moviesKeyPrefix$page') as String?,
+      );
 
   /// retrieve cached genres
-  Genres getCachedGenres() =>
-      Genres.fromString((localCache.read(_genresKey) ?? '') as String);
+  Genres getCachedGenres() => Genres.fromString(
+        localCache.read(_genresKey) as String?,
+      );
 
   /// get popular movies from API
   Future<Movies> getPopularMovies(int page) async {

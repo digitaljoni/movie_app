@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:movie_app/genres/genres.dart';
-import 'package:movie_app/popular_movies/view/popular_movies_page.dart';
+import 'package:movie_app/home/home.dart';
 import 'package:movie_app/splash/widgets/splash_body.dart';
 
 /// {@template splash_page}
@@ -25,7 +25,7 @@ class SplashPage extends StatelessWidget {
         log('state changed');
         Navigator.pushAndRemoveUntil<void>(
           context,
-          PopularMoviesPage.route(),
+          HomePage.route(),
           (route) => false,
         );
       },

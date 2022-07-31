@@ -29,11 +29,12 @@ class MovieDetailsInfo extends StatelessWidget {
           topRight: Radius.circular(radius),
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
+        padding: EdgeInsets.zero,
+        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MovieTitle(
-            movieTitle: movie.title,
+            movie: movie,
             style: Theme.of(context).textTheme.headline1,
           ),
           const SizedBox(height: 8),

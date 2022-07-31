@@ -46,8 +46,8 @@ class Movies extends Equatable {
   String toString() => jsonEncode(toJson());
 
   /// Converts the given [String] into a [Movies].
-  static Movies fromString(String value) =>
-      fromJson(jsonDecode(value) as JsonMap);
+  static Movies fromString(String? value) =>
+      value == null ? empty : fromJson(jsonDecode(value) as JsonMap);
 
   /// empty Movies object
   static const empty =
@@ -69,4 +69,19 @@ class Movies extends Equatable {
 
   /// check if not empty
   bool get isNotEmpty => this != empty;
+
+  /// Creates a copy of the current Movies with property changes
+  Movies copyWith({
+    int? page,
+    List<Movie>? movieList,
+    int? totalPages,
+    int? totalResults,
+  }) {
+    return Movies(
+      page: page ?? this.page,
+      movieList: movieList ?? this.movieList,
+      totalPages: totalPages ?? this.totalPages,
+      totalResults: totalResults ?? this.totalResults,
+    );
+  }
 }

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:favorites_repository/favorites_repository.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -45,12 +46,17 @@ Future<void> bootstrap() async {
     localCache: localCache,
   );
 
+  final favoritesRepository = FavoritesRepository(
+    localCache: localCache,
+  );
+
   await runZonedGuarded(
     () async {
       await BlocOverrides.runZoned(
         () async => runApp(
           App(
             moviesRepository: moviesRepository,
+            favoritesRepository: favoritesRepository,
           ),
         ),
         blocObserver: AppBlocObserver(),

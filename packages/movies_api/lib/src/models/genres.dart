@@ -30,9 +30,9 @@ class Genres {
   @override
   String toString() => jsonEncode(toJson());
 
-  /// Converts the given [String] into a [Genres].
-  static Genres fromString(String value) =>
-      fromJson(jsonDecode(value) as JsonMap);
+  /// Converts the given [String?] into a [Genres].
+  static Genres fromString(String? value) =>
+      (value == null) ? Genres.empty : fromJson(jsonDecode(value) as JsonMap);
 
   /// represents an empty Genres
   static const empty = Genres(genreList: []);

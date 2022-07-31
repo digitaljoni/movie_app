@@ -86,4 +86,11 @@ class Movie {
 
   /// Converts this [Movie] into a [JsonMap].
   JsonMap toJson() => _$MovieToJson(this);
+
+  @override
+  bool operator ==(Object other) =>
+      other is Movie && other.runtimeType == runtimeType && other.id == id;
+
+  @override
+  int get hashCode => id.hashCode;
 }

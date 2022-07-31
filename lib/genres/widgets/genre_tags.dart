@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/config/theme.dart';
 import 'package:movie_app/genres/cubit/genres_cubit.dart';
 
 class GenreTags extends StatelessWidget {
@@ -33,12 +34,7 @@ class GenreTag extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color.fromRGBO(
-          236,
-          155,
-          62,
-          .2,
-        ),
+        color: AppTheme.tagColor,
         borderRadius: BorderRadius.circular(4),
       ),
       padding: const EdgeInsets.symmetric(

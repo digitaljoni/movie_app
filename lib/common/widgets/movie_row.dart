@@ -30,7 +30,7 @@ class PopularMovieRow extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  MovieTitle(movieTitle: movie.title),
+                  MovieTitle(movie: movie),
                   Rating(
                     score: movie.voteAverage,
                   ),
