@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_app/common/common.dart';
 import 'package:movie_app/config/config.dart';
 
 class Thumbnail extends StatelessWidget {
@@ -17,11 +19,14 @@ class Thumbnail extends StatelessWidget {
       borderRadius: BorderRadius.circular(8),
       child: Hero(
         tag: 'movie$id',
-        child: Image.network(
-          '${Configurations.imageBaseUrl}/$imagePath',
-          fit: BoxFit.cover,
+        child: CachedNetworkImage(
+          imageUrl: '${Configurations.imageBaseUrl}/$imagePath',
+          progressIndicatorBuilder: (context, url, downloadProgress) =>
+              const Loading(),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
           width: 100,
           height: 100,
+          fit: BoxFit.cover,
         ),
       ),
     );

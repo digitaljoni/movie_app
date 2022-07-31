@@ -38,4 +38,6 @@ class PopularMoviesState extends Equatable {
   }
 
   bool get isSuccess => status == Status.success;
+
+  bool get isFailure => status == Status.failure;
 }

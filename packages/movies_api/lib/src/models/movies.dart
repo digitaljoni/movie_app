@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
@@ -40,6 +42,13 @@ class Movies extends Equatable {
   /// Converts this [Movies] into a [JsonMap].
   JsonMap toJson() => _$MoviesToJson(this);
 
+  @override
+  String toString() => jsonEncode(toJson());
+
+  /// Converts the given [String] into a [Movies].
+  static Movies fromString(String value) =>
+      fromJson(jsonDecode(value) as JsonMap);
+
   /// empty Movies object
   static const empty =
       Movies(page: 0, movieList: [], totalPages: 0, totalResults: 0);
@@ -54,4 +63,10 @@ class Movies extends Equatable {
 
   /// how many are in the movie list
   int get count => movieList.length;
+
+  /// check if empty
+  bool get isEmpty => this == empty;
+
+  /// check if not empty
+  bool get isNotEmpty => this != empty;
 }

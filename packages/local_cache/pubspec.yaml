@@ -1,4 +1,4 @@
-name: movies_repository
+name: local_cache
 version: 1.0.0+1
 publish_to: none
 
@@ -8,12 +8,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  local_cache:
-    path: ../local_cache
-  movies_api:
-    path: ../movies_api
+  hive: ^2.2.3
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
   very_good_analysis: ^3.0.1

@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_app/common/common.dart';
 import 'package:movie_app/config/config.dart';
 
 class MovieBackdrop extends StatelessWidget {
@@ -15,8 +17,11 @@ class MovieBackdrop extends StatelessWidget {
   Widget build(BuildContext context) {
     return Hero(
       tag: 'movie$id',
-      child: Image.network(
-        '${Configurations.imageBaseUrl}/$imagePath',
+      child: CachedNetworkImage(
+        imageUrl: '${Configurations.imageBaseUrl}/$imagePath',
+        progressIndicatorBuilder: (context, url, downloadProgress) =>
+            const Loading(),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
         height: MediaQuery.of(context).size.height / 2,
         width: double.infinity,
         fit: BoxFit.cover,

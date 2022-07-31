@@ -30,7 +30,14 @@ class GenresCubit extends Cubit<GenresState> {
         ),
       );
     } on Exception {
-      emit(state.copyWith(status: GenresStatus.failure));
+      // try fetching the cached genres
+      final genres = moviesRepository.getCachedGenres();
+      emit(
+        state.copyWith(
+          genres: genres,
+          status: GenresStatus.failure,
+        ),
+      );
     }
   }
 }

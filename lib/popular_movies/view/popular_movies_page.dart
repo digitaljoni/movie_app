@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movie_app/config/config.dart';
+import 'package:movie_app/popular_movies/cubit/cubit.dart';
 import 'package:movie_app/popular_movies/widgets/popular_movies_body.dart';
 
 /// {@template popular_movies_page}
@@ -50,6 +51,19 @@ class PopularMoviesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const PopularMoviesBody();
+    return BlocListener<PopularMoviesCubit, PopularMoviesState>(
+      listener: (context, state) {
+        if (state.isFailure) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              const SnackBar(
+                content: Text('Movie Fetch Failed'),
+              ),
+            );
+        }
+      },
+      child: const PopularMoviesBody(),
+    );
   }
 }

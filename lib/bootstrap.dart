@@ -3,7 +3,11 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
+import 'package:local_cache/local_cache.dart';
 import 'package:movie_app/app/app.dart';
+import 'package:movie_app/config/config.dart';
 import 'package:movies_api/movies_api.dart';
 import 'package:movies_repository/movies_repository.dart';
 
@@ -21,13 +25,24 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-Future<void> bootstrap({required MoviesApi moviesApi}) async {
+Future<void> bootstrap() async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
+  final moviesApi = MoviesApi(
+    apiKey: Configurations.apiKey,
+  );
+
+  await Hive.initFlutter();
+
+  final box = await Hive.openBox<dynamic>('movies');
+
+  final localCache = LocalCache(box);
+
   final moviesRepository = MoviesRepository(
     moviesApi: moviesApi,
+    localCache: localCache,
   );
 
   await runZonedGuarded(

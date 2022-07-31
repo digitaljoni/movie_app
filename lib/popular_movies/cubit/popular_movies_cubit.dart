@@ -31,7 +31,15 @@ class PopularMoviesCubit extends Cubit<PopularMoviesState> {
         ),
       );
     } on Exception {
-      emit(state.copyWith(status: Status.failure));
+      // try fetching the cached movies
+      final movies = moviesRepository.getCachedPopularMovies(page);
+
+      emit(
+        state.copyWith(
+          movies: movies,
+          status: Status.failure,
+        ),
+      );
     }
   }
 }

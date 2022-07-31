@@ -27,7 +27,7 @@ class PopularMoviesBody extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: (state.isSuccess)
+              child: (state.movies.isNotEmpty)
                   ? PopularMoviesList(
                       movies: state.movies,
                     )

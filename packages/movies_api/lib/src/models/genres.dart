@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:movies_api/movies_api.dart';
@@ -24,6 +26,13 @@ class Genres {
 
   /// Converts this [Genres] into a [JsonMap].
   JsonMap toJson() => _$GenresToJson(this);
+
+  @override
+  String toString() => jsonEncode(toJson());
+
+  /// Converts the given [String] into a [Genres].
+  static Genres fromString(String value) =>
+      fromJson(jsonDecode(value) as JsonMap);
 
   /// represents an empty Genres
   static const empty = Genres(genreList: []);
